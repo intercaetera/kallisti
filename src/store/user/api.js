@@ -1,5 +1,3 @@
 import request from '../../helpers/request';
 
-export fetchCurrentUser() {
-  request()
-}
+export const fetchCurrentUser = () => request('user/@me');

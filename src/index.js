@@ -2,10 +2,13 @@ import dotenv from 'dotenv';
 import React, { Component } from 'react';
 import blessed from 'blessed';
 import { render } from 'react-blessed';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import App from './App';
 
 dotenv.config();
 
-class App extends Component {
+class Renderer extends Component {
   constructor() {
     super();
     this.state = {
@@ -15,16 +18,9 @@ class App extends Component {
 
   render() {
     return (
-      <box
-        top="center"
-        left="center"
-        width="50%"
-        height="50%"
-        border={{ type: 'line' }}
-        style={{ border: { fg: 'blue' } }}
-      >
-        {this.state.data}
-      </box>
+      <Provider store={store}>
+        <App />
+      </Provider>
     );
   }
 }
@@ -39,4 +35,4 @@ const screen = blessed.screen({
 // Adding a way to quit the program
 screen.key(['C-q'], () => process.exit(0));
 
-render(<App />, screen);
+render(<Renderer />, screen);
