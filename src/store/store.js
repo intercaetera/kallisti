@@ -1,0 +1,7 @@
+import { createStore, combineReducers } from 'redux';
+
+import user from './user/reducer';
+
+export default createStore(combineReducers({
+  user,
+}));
