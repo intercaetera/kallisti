@@ -34,7 +34,7 @@
     "@babel/preset-react": "^7.0.0"
   },
   "scripts": {
-    "dev": "babel src -d dist && node lib/index.js",
+    "dev": "babel src -d dist && node dist/index.js",
     "build": "babel src -d dist "
   }
 }
