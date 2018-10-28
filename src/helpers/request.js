@@ -1,14 +1,14 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const request = options => axios({
-  ...options,
-  url: `https://discordapp.com/api/${options.url}`,
-  headers: {
-    ...options.headers,
-    Authorization: process.env.TOKEN,
-  },
+	...options,
+	url: `https://discordapp.com/api/${options.url}`,
+	headers: {
+		...options.headers,
+		Authorization: process.env.TOKEN,
+	},
 })
-  .then(response => response.data.data)
-  .catch(error => console.error(error));
+	.then(response => response.data.data)
+	.catch(error => console.error(error))
 
-export default request;
+export default request

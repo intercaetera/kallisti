@@ -1,13 +1,13 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
 
-import GuildList from './components/guildList/guildList.component';
+import GuildList from './components/guildList/guildList.component'
 
 class App extends PureComponent {
-  render() {
-    return (
-      <GuildList />
-    );
-  }
+	render() {
+		return (
+			<GuildList />
+		)
+	}
 }
 
-export default App;
+export default App
