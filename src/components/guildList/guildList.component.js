@@ -1,11 +1,22 @@
 import React, { PureComponent } from 'react'
-
-import { getCurrentUser } from '../../store/user/actions'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+
+import { getCurrentUserGuilds } from '../../shared/user/actions'
+import { currentUserGuildsSelector } from '../../shared/user/selectors'
 
 class GuildList extends PureComponent {
+	static propTypes = {
+		getCurrentUserGuilds: PropTypes.func.isRequired,
+		guilds: PropTypes.arrayOf(PropTypes.string).isRequired,
+	}
+
 	componentDidMount() {
-		this.guildList.focus()
+		const { guildList } = this
+		const { getCurrentUserGuilds } = this.props
+
+		guildList.focus()
+		getCurrentUserGuilds()
 	}
 
 	render() {
@@ -19,7 +30,7 @@ class GuildList extends PureComponent {
 					selected: { fg: 'blue' },
 					border: { fg: 'blue' },
 				}}
-				items={['there', 'will', 'be', 'a', 'list', 'of guilds', 'here']}
+				items={this.props.guilds || []}
 				ref={ref => this.guildList = ref}
 			/>
 		)
@@ -27,15 +38,13 @@ class GuildList extends PureComponent {
 }
 
 function mapStateToProps(state) {
-	const { currentUser } = state
-
 	return {
-		currentUser,
+		guilds: currentUserGuildsSelector(state),
 	}
 }
 
 const mapDispatchToProps = {
-	getCurrentUser,
+	getCurrentUserGuilds,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GuildList)
