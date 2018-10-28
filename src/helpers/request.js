@@ -8,7 +8,9 @@ const request = options => axios({
 		Authorization: process.env.TOKEN,
 	},
 })
-	.then(response => response.data.data)
-	.catch(error => console.error(error))
+	.then(response => response.data)
+	.catch(error => {
+		console.log(error)
+	})
 
 export default request
