@@ -1,22 +1,25 @@
-import { FETCH_USER, FETCH_USER_SUCCESS, FETCH_USER_FAILURE } from './types';
+import { GET_CURRENT_USER, GET_CURRENT_USER_SUCCESS, GET_CURRENT_USER_FAILURE } from './types';
 
-import { fetchCurrentUser as fetchCurrentUserApi } from './api';
+import {
+  getCurrentUser as getCurrentUserApi,
+} from './api';
 
-export const fetchUser = () => async dispatch => {
+export const getCurrentUser = () => async dispatch => {
   dispatch({
-    type: FETCH_USER,
+    type: GET_CURRENT_USER,
   });
 
   try {
-    const user = await fetchCurrentUserApi();
+    const user = await getCurrentUserApi();
 
-    dispatch({
-      type: FETCH_USER_SUCCESS,
+    return dispatch({
+      type: GET_CURRENT_USER_SUCCESS,
       user,
     });
   } catch (error) {
-    dispatch({
-      type: FETCH_USER_FAILURE,
+    return dispatch({
+      type: GET_CURRENT_USER_FAILURE,
     });
   }
 };
+

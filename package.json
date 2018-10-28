@@ -12,11 +12,13 @@
     "react-devtools-core": "^3.4.2",
     "react-redux": "^5.1.0",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "ws": "^6.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
+    "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0"
   },

@@ -1,7 +1,7 @@
 import {
-  FETCH_USER,
-  FETCH_USER_SUCCESS,
-  FETCH_USER_FAILURE,
+  GET_CURRENT_USER,
+  GET_CURRENT_USER_SUCCESS,
+  GET_CURRENT_USER_FAILURE,
 } from './types';
 
 const initialState = {
@@ -10,10 +10,10 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_USER_SUCCESS: {
+    case GET_CURRENT_USER_SUCCESS: {
       return {
         ...state,
-        user: action.user,
+        currentUser: action.user,
       };
     }
     default:

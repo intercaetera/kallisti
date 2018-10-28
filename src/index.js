@@ -9,13 +9,6 @@ import App from './App';
 dotenv.config();
 
 class Renderer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      data: null,
-    };
-  }
-
   render() {
     return (
       <Provider store={store}>
