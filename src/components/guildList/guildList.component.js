@@ -22,7 +22,8 @@ class GuildList extends PureComponent {
 	render() {
 		return (
 			<list
-				width="33%"
+				width="20%"
+				height="50%"
 				border={{ type: 'line' }}
 				keys
 				mouse
