@@ -6,7 +6,7 @@
 
 Kallisti is a fast, featureful terminal client for Discord built with **blessed**, **React** and **Redux**.
 
-Kallisti is currently unfinished and in constant development.
+Kallisti is currently unfinished and in constant development. See the _Issues_ tab to learn how you can contribute.
 
 ## Development installation
 
