@@ -2,7 +2,30 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import { getGuildChannels } from './store/actions'
+import { selectedGuildSelector, selectedGuildIdSelector } from '../guildList/store/selectors'
+import { selectedGuildChannelsSelector } from './store/selectors'
+
 class ChannelList extends PureComponent {
+	static propTypes = {
+		selectedGuildId: PropTypes.number.isRequired,
+		getGuildChannels: PropTypes.func.isRequired,
+	}
+
+	componentDidUpdate(prevProps) {
+		const {
+			selectedGuild,
+			selectedGuildId,
+			getGuildChannels,
+		} = this.props
+
+		const { selectedGuildId: prevSelectedGuildId } = prevProps
+
+		if (selectedGuildId !== prevSelectedGuildId) {
+			getGuildChannels(selectedGuild.id)
+		}
+	}
+
 	render() {
 		return (
 			<list
@@ -16,11 +39,23 @@ class ChannelList extends PureComponent {
 					selected: { fg: 'blue' },
 					border: { fg: 'blue' },
 				}}
-				items={['list', 'of', 'channels']}
+				items={this.props.channels || []}
 				ref={ref => this.channelList = ref}
 			/>
 		)
 	}
 }
 
-export default ChannelList
+function mapStateToProps(state) {
+	return {
+		channels: selectedGuildChannelsSelector(state),
+		selectedGuildId: selectedGuildIdSelector(state),
+		selectedGuild: selectedGuildSelector(state),
+	}
+}
+
+const mapDispatchToProps = {
+	getGuildChannels,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelList)
