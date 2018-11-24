@@ -10,7 +10,7 @@ const request = options => axios({
 })
 	.then(response => response.data)
 	.catch(error => {
-		console.log(error)
+		// console.log(error)
 	})
 
 export default request

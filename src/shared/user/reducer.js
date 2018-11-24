@@ -55,7 +55,6 @@ export default (state = initialState, action) => {
 			guildsLoading: false,
 		}
 	}
-
 	default:
 		return state
 	}
