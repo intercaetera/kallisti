@@ -6,23 +6,34 @@ import { getGuildChannels } from './store/actions'
 import { selectedGuildSelector, selectedGuildIdSelector } from '../guildList/store/selectors'
 import { selectedGuildChannelsSelector } from './store/selectors'
 
+import { CHANNEL_LIST } from '../../types/elementTypes'
+import { focusedElementSelector } from '../../shared/selectors'
+
 class ChannelList extends PureComponent {
 	static propTypes = {
 		selectedGuildId: PropTypes.number.isRequired,
 		getGuildChannels: PropTypes.func.isRequired,
+		focusedElement: PropTypes.string.isRequired,
 	}
 
 	componentDidUpdate(prevProps) {
+		const { channelList } = this
+
 		const {
 			selectedGuild,
 			selectedGuildId,
 			getGuildChannels,
+			focusedElement,
 		} = this.props
 
 		const { selectedGuildId: prevSelectedGuildId } = prevProps
 
 		if (selectedGuildId !== prevSelectedGuildId) {
 			getGuildChannels(selectedGuild.id)
+		}
+
+		if (focusedElement === CHANNEL_LIST) {
+			channelList.focus()
 		}
 	}
 
@@ -51,6 +62,7 @@ function mapStateToProps(state) {
 		channels: selectedGuildChannelsSelector(state),
 		selectedGuildId: selectedGuildIdSelector(state),
 		selectedGuild: selectedGuildSelector(state),
+		focusedElement: focusedElementSelector(state),
 	}
 }
 
